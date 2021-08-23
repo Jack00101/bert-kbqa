@@ -8,17 +8,18 @@
 
 import pymysql
 import pandas as pd
+
 from sqlalchemy import create_engine
 
 
 def create_db():
     connect = pymysql.connect(  # 连接数据库服务器-*-*-
         user="root",
-        password="123456",
+        password="root",
         host="127.0.0.1",
         port=3306,
-        db="KB_QA",
-        charset="utf8"
+        # db="KB_QA",
+        # charset="utf8"
     )
     conn = connect.cursor()  # 创建操作游标
     # 你需要一个游标 来实现对数据库的操作相当于一条线索
@@ -46,7 +47,7 @@ def create_db():
 def loaddata():
     # 初始化数据库连接，使用pymysql模块
     db_info = {'user': 'root',
-               'password': '123456',
+               'password': 'root',
                'host': '127.0.0.1',
                'port': 3306,
                'database': 'KB_QA'
@@ -74,7 +75,7 @@ def loaddata():
 def upload_data(sql):
     connect = pymysql.connect(  # 连接数据库服务器
         user="root",
-        password="123456",
+        password="root",
         host="127.0.0.1",
         port=3306,
         db="kb_qa",
@@ -96,10 +97,9 @@ def upload_data(sql):
 
 
 if __name__ == '__main__':
-    # create_db()
-    # loaddata()
+    create_db()
+    loaddata()
     sql = "select * from nlpccqa where entity = '高等数学'"
-
     ret = upload_data(sql)
     print(list(ret))
     #
